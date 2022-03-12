@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MemeService } from 'src/app/meme/services/meme.service';
@@ -20,8 +20,8 @@ export class NewMemeComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute, private memeService: MemeService, private fb: FormBuilder) {
     this.memeForm = this.fb.group({
-      text0: ['test'],
-      text1: ['test']
+      text0: ['', [Validators.required]],
+      text1: ['', [Validators.required]]
     });
   }
   
@@ -46,6 +46,7 @@ export class NewMemeComponent implements OnInit, OnDestroy {
     this.memeService.newMeme(meme).subscribe(resp => {
       this.meme = {...this.meme, url: resp.url};
       this.memeService.saveMeme(this.meme);
+      this.memeForm.reset();
     });
   }
 
