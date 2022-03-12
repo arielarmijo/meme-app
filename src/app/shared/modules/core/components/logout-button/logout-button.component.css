@@ -1,4 +1,5 @@
 #logout {
+  display: block;
   cursor: pointer;
 }
 
