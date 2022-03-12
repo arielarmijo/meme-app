@@ -1,27 +1,36 @@
 # MemeApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.3.
+Aplicación para crear memes usando la API de [ImgFlip](https://imgflip.com/api) y la autenticación de [Auth0](https://auth0.com/)
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Instalación
 
-## Code scaffolding
+1. Clonar repositorio
+```
+git clone https://github.com/arielarmijo/meme-app.git
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+2. Ingresar a la carpeta meme-app
+```
+cd meme-app
+```
 
-## Build
+3. Instalar dependencias
+```
+npm install
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+4. Crear un archivo secrets.json en la raíz del proyecto con la siguiente estructura
+```
+{
+  "domain": "AUTH0_DOMAIN",
+  "clientId": "AUTH0_CLIENT_ID",
+  "imgFlipUsername": "IMG_FLIP_USERNAME",
+  "imgFlipPassword": "IMG_FLIP_PASSWORD"
+}
+```
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+5. Iniciar el proyecto
+```
+ng serve --open
+```
