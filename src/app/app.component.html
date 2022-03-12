@@ -1,0 +1,11 @@
+<div class="container d-flex flex-column justify-content-center h-100" *ngIf="auth.isLoading$ | async; else loaded">
+    <app-spinner size="10rem"></app-spinner>
+</div>
+
+<ng-template #loaded>
+  <div class="container d-flex flex-column">
+    <app-navbar></app-navbar>
+    <router-outlet></router-outlet>
+    <app-footer title="Meme creator" [year]="year"></app-footer>
+  </div>
+</ng-template>

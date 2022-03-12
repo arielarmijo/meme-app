@@ -1,0 +1,8 @@
+<main class="container">
+  <div class="card border-secondary shadow w-75 mx-auto" *ngIf="meme">
+    <app-meme-image [meme]="meme"></app-meme-image>
+  </div>
+  <div class="d-flex justify-content-center">
+    <a class="btn btn-primary mt-3" routerLink="/">Volver</a>
+  </div>
+</main>

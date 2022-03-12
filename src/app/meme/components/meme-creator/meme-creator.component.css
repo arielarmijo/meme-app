@@ -1,0 +1,10 @@
+a {
+  text-decoration: none;
+  font-size: small;
+  color: black;
+}
+
+a:hover {
+  transform: scale(1.05);
+  transition: transform 0.25s ease-in-out;
+}

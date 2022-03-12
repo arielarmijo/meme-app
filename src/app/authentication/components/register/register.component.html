@@ -1,0 +1,27 @@
+<main class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="text-center">
+        <h1>Sign Up</h1>
+        <p><a class="nav-link" routerLink="/auth/login">¿Ya tienes una cuenta?</a></p>
+      </div>
+      <form [formGroup]="registerForm" (ngSubmit)="doRegister()">
+        <div class="row mb-3">
+          <label for="email" class="form-label">Correo</label>
+          <input id="email" type="email" class="form-control" formControlName="email"/>
+        </div>
+        <div class="row mb-3">
+          <label for="password1" class="form-label">Contraseña</label>
+          <input id="password1" type="password" class="form-control" formControlName="password1" [ngClass]="{'invalid': arePasswordsEquals}"/>
+        </div>
+        <div class="row mb-3">
+          <label for="password2" class="form-label">Confirme Contraseña</label>
+          <input id="password2" type="password" class="form-control" formControlName="password2" [ngClass]="{'invalid': arePasswordsEquals}"/>
+        </div>
+        <div class="text-center">
+          <button class="btn btn-primary" [disabled]="registerForm.invalid">Register</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>

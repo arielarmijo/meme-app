@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">Meme Creator</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+        </li>
+        <li class="nav-item" *ngIf="auth.isAuthenticated$ | async">
+          <a class="nav-link" routerLink="/create" routerLinkActive="active">Make</a>
+        </li>
+        <li class="nav-item" *ngIf="!(auth.isAuthenticated$ | async)">
+          <app-login-button></app-login-button>
+        </li>
+        <li class="nav-item" *ngIf="!(auth.isAuthenticated$ | async)">
+          <app-signup-button *ngIf="!(auth.isAuthenticated$ | async)"></app-signup-button>
+        </li>
+        <li class="nav-item dropdown" *ngIf="auth.user$ | async as user">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img class="rounded-circle me-1" [src]="user.picture" width="30px"/><span>{{user.nickname}}</span>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li *ngIf="auth.isAuthenticated$ | async">
+              <app-logout-button class="dropdown-item"></app-logout-button>
+            </li>
+          </ul>
+        </li>
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>

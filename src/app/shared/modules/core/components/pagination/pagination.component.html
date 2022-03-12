@@ -1,0 +1,9 @@
+<nav>
+  <ul class="pagination justify-content-center">
+    <ng-container *ngFor="let p of pages">
+      <li class="page-item" [ngClass]="currentPage === p ? 'active' : ''">
+        <button class="page-link" (click)="pageChanged.emit(p)">{{p + 1}}</button>
+      </li>
+    </ng-container>
+  </ul>
+</nav>

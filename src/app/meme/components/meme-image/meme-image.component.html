@@ -1,0 +1,2 @@
+<img [src]="memeProps.url" [hidden]="loading" [alt]="memeProps.name" (load)="loading=false"/>
+<app-spinner *ngIf="loading"></app-spinner>
