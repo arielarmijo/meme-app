@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
 import { MemeService } from 'src/app/meme/services/meme.service';
 import { Meme } from 'src/app/meme/types/get-meme-response.interface';
 
@@ -13,7 +14,7 @@ export class HomeComponent implements OnInit {
   currentPage = 0;
   itemsPerPage = 8;
  
-  constructor(private memeService: MemeService) {
+  constructor(public auth: AuthService, private memeService: MemeService) {
 
   }
 
