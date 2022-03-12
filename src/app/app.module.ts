@@ -25,7 +25,6 @@ import { CoreModule } from './shared/modules/core/core.module';
     FooterModule,
     HomeModule,
     CoreModule
-    
   ],
   providers: [ MemeService ],
   bootstrap: [AppComponent]

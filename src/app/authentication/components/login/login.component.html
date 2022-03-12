@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-md-6 col-lg-4 text-center">
       <h1>Sign In</h1>
-      <p><a class="nav-link" routerLink="/auth/register">¿Necesitas una cuenta?</a></p>
+      <p><a class="nav-link" routerLink="/register">¿Necesitas una cuenta?</a></p>
       <form [formGroup]="loginForm" (ngSubmit)="doLogin()">
         <input type="email" class="form-control mb-3" placeholder="usuario" formControlName="email">
         <input type="password" class="form-control mb-3" placeholder="contraseña" formControlName="password">

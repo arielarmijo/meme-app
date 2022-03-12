@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { passwordsDontMatchValidator } from 'src/app/shared/directives/passwords-dont-match.directive';
+import { passwordsDontMatchValidator } from 'src/app/authentication/directives/passwords-dont-match.directive';
 
 @Component({
   selector: 'app-register',
