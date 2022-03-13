@@ -19,7 +19,6 @@ export class ViewMemeComponent implements OnInit {
     private route: ActivatedRoute,
     private memeService: MemeService,
     public auth: AuthService,
-    private router: Router,
     private location: Location
   ) { }
 
@@ -34,7 +33,7 @@ export class ViewMemeComponent implements OnInit {
 
   deleteMeme() {
     this.memeService.deleteMeme(this.id);
-    this.router.navigateByUrl('/home');
+    this.location.back();
   }
 
 }
