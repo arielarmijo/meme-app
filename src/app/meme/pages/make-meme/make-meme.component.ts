@@ -4,11 +4,11 @@ import { MemeService } from 'src/app/meme/services/meme.service';
 import { Meme } from 'src/app/meme/types/get-meme-response.interface';
 
 @Component({
-  selector: 'app-meme-creator',
-  templateUrl: './meme-creator.component.html',
-  styleUrls: ['./meme-creator.component.css']
+  selector: 'app-make-meme',
+  templateUrl: './make-meme.component.html',
+  styleUrls: ['./make-meme.component.css']
 })
-export class MemeCreatorComponent {
+export class MakeMemeComponent {
 
   memes$: Observable<Meme[]>;
   currentPage = 0;

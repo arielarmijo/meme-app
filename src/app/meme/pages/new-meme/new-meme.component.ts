@@ -29,7 +29,7 @@ export class NewMemeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id')!;
     this.memeSubcription = this.memeService.getMeme(this.id).subscribe(meme => {
-      this.meme = meme;
+      this.meme = meme as Meme;
     });
   }
 
@@ -43,10 +43,10 @@ export class NewMemeComponent implements OnInit, OnDestroy {
       text0: this.memeForm.get('text0')?.value,
       text1: this.memeForm.get('text1')?.value
     };
+    this.memeForm.reset();
     this.memeService.newMeme(meme).subscribe(resp => {
       this.meme = {...this.meme, url: resp.url};
       this.memeService.saveMeme(this.meme);
-      this.memeForm.reset();
     });
   }
 

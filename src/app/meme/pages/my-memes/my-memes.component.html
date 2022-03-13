@@ -1,0 +1,27 @@
+<main>
+  <div class="container" *ngIf="memes.length > 0;else message">
+    <h1 class="text-center">Mis memes</h1>
+    <app-paginated-list 
+      [items]="memes"
+      [currentPage]="currentPage"
+      [itemsPerPage]="itemsPerPage"
+      class="row row-cols-1 row-cols-sm-2 row-cols-md-4 my-5">
+        <ng-template #item let-item="item">
+          <a class="my-2" [routerLink]="['/view', item.id]"><app-meme-image [meme]="item"></app-meme-image></a>
+        </ng-template>
+    </app-paginated-list>
+    <app-pagination
+      *ngIf="memes.length > itemsPerPage"
+      [itemsLength]="memes.length"
+      [itemsPerPage]="itemsPerPage"
+      [currentPage]="currentPage"
+      (pageChanged)="currentPage=$event">
+    </app-pagination>
+  </div>
+
+  <ng-template #message>
+    <div class="container">
+      <p class="text-center mt-5">No has creado memes aún...</p>
+    </div>
+  </ng-template>
+</main>

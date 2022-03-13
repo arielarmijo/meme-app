@@ -14,4 +14,5 @@ export interface Meme {
   width:     number;
   height:    number;
   box_count: number;
+  author?: string;
 }

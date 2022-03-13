@@ -5,43 +5,63 @@ import { Meme, GetMemeResponse } from '../types/get-meme-response.interface';
 import { catchError, find, map, Observable, of, tap, throwError } from 'rxjs';
 import { NewMemeRequest } from '../types/new-meme-request.interface';
 import { Data, NewMemeResponse } from '../types/new-meme-response.interface';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Injectable()
 export class MemeService {
 
   private memes$: Observable<Meme[]>;
+  private localStoragekey = 'memes';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private auth: AuthService) {
     const url = `${environment.imgFlipBaseUrl}/get_memes`;
-    const findTwoBoxMemes = (meme: Meme): boolean => meme.box_count === 2;
-    this.memes$ = this.http.get<GetMemeResponse>(url).pipe(map(mr => mr.data.memes.filter(findTwoBoxMemes)));
+    const findTwoBoxedMemes = (meme: Meme): boolean => meme.box_count === 2;
+    this.memes$ = this.http.get<GetMemeResponse>(url).pipe(
+      map(mr => mr.data.memes.filter(findTwoBoxedMemes)),
+      catchError(this.handeError)
+    );
   }
 
-  saveMeme(meme: Meme) {
-    const memesString = localStorage.getItem('memes');
+  saveMeme(meme: Meme): void {
+    const memesString = localStorage.getItem(this.localStoragekey);
     const memes: Meme[] = memesString ? JSON.parse(memesString) : [];
-    localStorage.setItem('memes', JSON.stringify([...memes, meme]));
+    this.auth.user$.subscribe(user => {
+      localStorage.setItem(this.localStoragekey, JSON.stringify([...memes, {...meme, author: user?.email}]));
+    });
+  }
+
+  deleteMeme(id: string): void {
+    const memesString = localStorage.getItem(this.localStoragekey);
+    if (!memesString) return;
+    const memes: Meme[] = JSON.parse(memesString);
+    localStorage.setItem(this.localStoragekey, JSON.stringify(memes.filter(meme => meme.id !== id)));
   }
 
   getMakedMemes(): Meme[] {
-    const memesString = localStorage.getItem('memes');
+    const memesString = localStorage.getItem(this.localStoragekey);
     const memes: Meme[] = memesString ? JSON.parse(memesString) : [];
     return memes.reverse();
   }
 
   getMakedMeme(id: string): Meme | undefined {
-    const memesString = localStorage.getItem('memes');
+    const memesString = localStorage.getItem(this.localStoragekey);
     const memes: Meme[] = memesString ? JSON.parse(memesString) : [];
     return memes.find(meme => meme.id === id);
+  }
+
+  getMyMemes(author: string): Meme[] {
+    const memesString = localStorage.getItem(this.localStoragekey);
+    const memes: Meme[] = memesString ? JSON.parse(memesString) : [];
+    return memes.filter(meme => meme.author === author).reverse();
   }
 
   getMemes(): Observable<Meme[]> {
     return this.memes$;
   }
 
-  getMeme(id: string): Observable<Meme> {
+  getMeme(id: string): Observable<Meme | undefined> {
     return this.memes$.pipe(
-      map(memes => memes.find(meme => meme.id === id) as Meme)
+      map(memes => memes.find(meme => meme.id === id))
     );
   }
 

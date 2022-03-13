@@ -1,19 +1,27 @@
-<main class="container" *ngIf="meme">
-  <h1 class="text-center mt-2 mb-5">{{meme.name}}</h1>
-  <div class="row">
-    <div class="col">
-      <div class="card border-secondary shadow">
-        <app-meme-image [meme]="meme"></app-meme-image>
+<main>
+
+  <div class="container" *ngIf="meme; else spinner">
+    <h1 class="text-center mt-2 mb-5">{{meme.name}}</h1>
+    <div class="row">
+      <div class="col">
+        <div class="card border-secondary shadow">
+          <app-meme-image [meme]="meme"></app-meme-image>
+        </div>
+      </div>
+      <div class="col-sm-5 col-md-4">
+        <form  class="mt-4" [formGroup]="memeForm" (ngSubmit)="handleSubmit()">
+          <input type="text" class="form-control mb-3" placeholder="Texto 1" formControlName="text0"/>
+          <input type="text" class="form-control mb-3" placeholder="Texto 2" formControlName="text1"/>
+          <div class="d-flex justify-content-center">
+            <button class="btn btn-primary mx-auto" [disabled]="memeForm.invalid">Crear</button>
+          </div>
+        </form>
       </div>
     </div>
-    <div class="col-sm-5 col-md-4">
-      <form  class="mt-4" [formGroup]="memeForm" (ngSubmit)="handleSubmit()">
-        <input type="text" class="form-control mb-3" placeholder="Texto 1" formControlName="text0"/>
-        <input type="text" class="form-control mb-3" placeholder="Texto 2" formControlName="text1"/>
-        <div class="d-flex justify-content-center">
-          <button class="btn btn-primary mx-auto" [disabled]="memeForm.invalid">Crear</button>
-        </div>
-      </form>
-    </div>
   </div>
+
+  <ng-template #spinner>
+    <app-spinner></app-spinner>
+  </ng-template>
+
 </main>
