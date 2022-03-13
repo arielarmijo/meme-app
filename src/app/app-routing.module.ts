@@ -4,7 +4,7 @@ import { HomeComponent } from './home/pages/home.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
-  { path: '', loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule) },
+  //{ path: '', loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule) },
   { path: '', loadChildren: () => import('./meme/meme.module').then(m => m.MemeModule) },
   { path: 'home', component: HomeComponent},
   { path: '**', redirectTo: 'home', pathMatch: 'full'}
@@ -12,7 +12,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, {useHash: true})
   ],
   exports: [RouterModule]
 })

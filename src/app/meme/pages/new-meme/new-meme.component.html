@@ -6,7 +6,7 @@
         <app-meme-image [meme]="meme"></app-meme-image>
       </div>
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-5 col-md-4">
       <form  class="mt-4" [formGroup]="memeForm" (ngSubmit)="handleSubmit()">
         <input type="text" class="form-control mb-3" placeholder="Texto 1" formControlName="text0"/>
         <input type="text" class="form-control mb-3" placeholder="Texto 2" formControlName="text1"/>
