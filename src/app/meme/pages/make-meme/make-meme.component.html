@@ -2,15 +2,17 @@
 
   <div class="container" *ngIf="memes$ | async as memes; else spinner">
     <h2 class="text-center mt-2 mb-4">Elige una plantilla</h2>
-    <app-paginated-list
-      class="row row-cols-1 row-cols-sm-2 row-cols-md-4 my-5"
-      [items]="memes"
-      [currentPage]="currentPage"
-      [itemsPerPage]="itemsPerPage">
-      <ng-template #item let-item="item">
-        <a [routerLink]="['/create', item.id]"><app-meme-template [meme]="item"></app-meme-template></a>
-      </ng-template>
-    </app-paginated-list>
+    <div class="d-flex justify-content-center">
+      <app-paginated-list
+        class="meme-container"
+        [items]="memes"
+        [currentPage]="currentPage"
+        [itemsPerPage]="itemsPerPage">
+        <ng-template #item let-item="item">
+          <a [routerLink]="['/create', item.id]"><app-meme-template [meme]="item"></app-meme-template></a>
+        </ng-template>
+      </app-paginated-list>
+    </div>
     <app-pagination
       [itemsLength]="memes.length"
       [itemsPerPage]="itemsPerPage"
