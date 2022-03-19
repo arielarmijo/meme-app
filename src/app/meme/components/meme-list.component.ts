@@ -1,5 +1,4 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Meme } from '../types/get-meme-response.interface';
 
 @Component({
@@ -33,7 +32,6 @@ export class MemeListComponent implements OnInit {
   }
 
   private setItemsPerPage(windowWidth: number): void {
-    console.log({windowWidth});
     if (windowWidth >= 1024) {
       this.itemsPerPage = 16;
       return;
