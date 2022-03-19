@@ -1,0 +1,15 @@
+<main>
+  <div class="container" *ngIf="memes.length > 0; else title">
+    <h1 class="text-center">Últimos memes creados</h1>
+    <app-meme-list [memes]="memes"></app-meme-list>
+  </div>
+  <ng-template #title>
+    <div class="text-center">
+      <h1 class="my-5">Bienvenido a Meme Creator</h1>
+      <p *ngIf="!(auth.isAuthenticated$ | async); else logged">Inicia sesion para crear memes</p>
+      <ng-template #logged>
+        <p *ngIf="auth.user$|async as user">Hola {{user.given_name ?? user.name}}, ¡ya puedes <a class="link" routerLink="/create">crear memes</a>!</p>
+      </ng-template>
+    </div>
+  </ng-template>
+</main>

@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../shared/guards/auth.guard';
 import { CoreModule } from '../shared/modules/core/core.module';
+import { MemeListComponent } from './components/meme-list.component';
 import { MakeMemeComponent } from './pages/make-meme/make-meme.component';
 import { MyMemesComponent } from './pages/my-memes/my-memes.component';
 import { NewMemeComponent } from './pages/new-meme/new-meme.component';
@@ -21,7 +22,8 @@ const routes: Routes = [
     MakeMemeComponent,
     NewMemeComponent,
     ViewMemeComponent,
-    MyMemesComponent
+    MyMemesComponent,
+    MemeListComponent
   ],
   imports: [
     CommonModule,
@@ -29,6 +31,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     CoreModule
   ],
-  exports: []
+  exports: [
+    MemeListComponent
+  ]
 })
 export class MemeModule {}

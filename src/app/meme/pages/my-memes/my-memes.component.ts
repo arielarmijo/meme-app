@@ -12,8 +12,6 @@ import { Meme } from '../../types/get-meme-response.interface';
 export class MyMemesComponent implements OnInit, OnDestroy {
   
   memes: Meme[] = [];
-  currentPage = 0;
-  itemsPerPage = 8;
   authSubscription!: Subscription;
   
   constructor(private memeService: MemeService, private auth: AuthService) {}

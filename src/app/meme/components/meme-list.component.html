@@ -1,0 +1,25 @@
+<ng-container *ngIf="memesProps.length > 0;else alert">
+  <div class="d-flex justify-content-center" >
+    <app-paginated-list
+      class="meme-container"
+      [items]="memesProps"
+      [currentPage]="currentPage"
+      [itemsPerPage]="itemsPerPage">
+      <ng-template #item let-item="item">
+        <a [routerLink]="['/create', item.id]">
+          <app-meme-template [meme]="item"></app-meme-template>
+        </a>
+      </ng-template>
+    </app-paginated-list>
+  </div>
+  <app-pagination
+    [itemsLength]="memesProps.length"
+    [itemsPerPage]="itemsPerPage"
+    [currentPage]="currentPage"
+    (pageChanged)="currentPage=$event">
+  </app-pagination>
+</ng-container>
+
+<ng-template #alert>
+  <p class="alert alert-danger">No se encontraron memes.</p>
+</ng-template>
