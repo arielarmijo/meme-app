@@ -1,5 +1,7 @@
 # MemeApp
 
+![Meme ejemplo](./68inhl.jpg)
+
 Aplicación para crear memes usando la API de [ImgFlip](https://imgflip.com/api) y la autenticación de [Auth0](https://auth0.com/)
 
 
